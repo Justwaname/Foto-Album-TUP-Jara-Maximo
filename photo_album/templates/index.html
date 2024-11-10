@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="text-center">Tu Álbum</h2>
+<div class="galeria_fotos">
+    {% for photo in photos %}
+        <div class="photo">
+            <img src="{{ photo.image }}" alt="{{ photo.title }}">
+            <h3>{{ photo.title }}</h3>
+            <p>{{ photo.description }}</p>
+            <a href="{{ photo.image }}" target="_blank" class="btn btn-primary">Abrir</a>
+            <a href="{{ url_for('main.editar_foto', id=photo.id) }}" class="btn btn-secondary">Editar</a>
+            <form action="{{ url_for('main.eliminar_foto', id=photo.id) }}" method="POST" class="d-inline">
+                <button type="submit" class="btn btn-dark">Eliminar</button>
+            </form>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
